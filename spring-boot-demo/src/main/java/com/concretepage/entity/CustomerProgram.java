@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "CustomerProgramCode")
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class , property = "@id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class , property = "@id")
 public class CustomerProgram implements Serializable {
 
 	/**
