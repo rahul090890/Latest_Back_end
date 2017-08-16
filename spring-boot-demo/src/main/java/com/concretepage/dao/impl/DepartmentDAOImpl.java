@@ -33,7 +33,7 @@ public class DepartmentDAOImpl implements IDepartmentDAO {
 		 criteria.orderBy(cb.asc(root.get("departmentId")));
 		 return entityManager.createQuery(criteria).getResultList(); **/
 		
-		String hql = "from Department d where d.parentDepartment.departmentId is not null order by departmentName";
+		String hql = "from Department d where d.parentDepartment.departmentId is not null order by departmentCode, departmentName";
 		Query query = entityManager.createQuery(hql);
 		List<Department> departments = (List<Department>) query.getResultList();
 		return departments;

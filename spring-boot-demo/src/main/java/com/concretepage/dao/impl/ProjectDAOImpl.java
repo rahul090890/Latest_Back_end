@@ -23,17 +23,17 @@ public class ProjectDAOImpl implements IProjectDAO {
 	private EntityManager entityManager;
 
 	@Override
-    public List<Project> getProjects() {
-        String hql = "FROM Project as prg Order by prg.projectName";
-        return entityManager.createQuery(hql).getResultList();    
-        /*CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-         CriteriaQuery<Project> criteria = cb.createQuery(Project.class);
-         Root<Project> root = criteria.from(Project.class);
-         criteria.select(root);
-         criteria.orderBy(cb.asc(root.get("projectName")));
-         return entityManager.createQuery(criteria).getResultList();
-         */
-    }
+	public List<Project> getProjects() {
+		String hql = "FROM Project as prg Order by prg.projectName";
+		return entityManager.createQuery(hql).getResultList();	
+		/*CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		 CriteriaQuery<Project> criteria = cb.createQuery(Project.class);
+		 Root<Project> root = criteria.from(Project.class);
+		 criteria.select(root);
+		 criteria.orderBy(cb.asc(root.get("projectName")));
+		 return entityManager.createQuery(criteria).getResultList();
+		 */
+	}
 
 	@Override
 	public List<Project> findProjectByName(String projectName) {
@@ -48,7 +48,7 @@ public class ProjectDAOImpl implements IProjectDAO {
 
 	@Override
 	public void update(Project project) {
-		String hql = "update Project p set p.projectName = ? , p.customer.customerId = ? , p.customerProgram.customerProgramId = ?, p.department.departmentId = ? , p.projectType = ? , p.projectStatus = ? , p.updatedTime = ? , location = ?, customerProjectCode = ? where projectid = ?";
+		String hql = "update Project p set p.projectName = ? , p.customer.customerId = ? , p.customerProgram.customerProgramId = ?, p.department.departmentId = ? , p.projectType = ? , p.projectStatus = ? , p.updatedTime = ? , location = ?, customerProjectCode = ? , projectCode = ?  where projectid = ?";
 		Query query = entityManager.createQuery(hql);
 		query.setParameter(1, project.getProjectName());
 		query.setParameter(2, project.getCustomer().getCustomerId());
@@ -59,7 +59,8 @@ public class ProjectDAOImpl implements IProjectDAO {
 		query.setParameter(7, Calendar.getInstance().getTime());
 		query.setParameter(8, project.getLocation());
 		query.setParameter(9, project.getCustomerProjectCode());
-		query.setParameter(10, project.getProjectid());
+		query.setParameter(10, project.getProjectCode());
+		query.setParameter(11, project.getProjectid());
 		
 		query.executeUpdate();
 	}

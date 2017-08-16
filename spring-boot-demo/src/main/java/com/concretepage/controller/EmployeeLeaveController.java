@@ -109,5 +109,13 @@ public class EmployeeLeaveController {
 		return new ResponseEntity<EmployeeLeave>(leave, HttpStatus.OK);
 	}
 	
+	@PostMapping("creditLeavesAllEmployees/{leaveType}/{year}/{noOfDays}")
+	public ResponseEntity<Void> creditLeavesAllEmployees( @PathVariable("leaveType") String leaveType,
+																	@PathVariable("year") String year,
+																	@PathVariable("noOfDays") String noOfDays
+																) {
+		
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
 
 }

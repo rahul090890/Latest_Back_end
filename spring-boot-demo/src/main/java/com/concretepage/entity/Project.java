@@ -55,6 +55,11 @@ public class Project {
 	@Column(name = "customerProjectCode")
 	private String customerProjectCode;
 	
+	@Column(name = "projectCode")
+	private String projectCode;
+	
+	
+
 	public Project() {}
 
 	public int getProjectid() {
@@ -145,6 +150,14 @@ public class Project {
 
 	public void setCustomerProjectCode(String customerProjectCode) {
 		this.customerProjectCode = customerProjectCode;
+	}
+	
+	public String getProjectCode() {
+		return projectCode;
+	}
+
+	public void setProjectCode(String projectCode) {
+		this.projectCode = projectCode;
 	}
 
 	@Override

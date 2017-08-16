@@ -40,6 +40,18 @@ public class Customer implements Serializable {
 	
 	@Column(name = "zipCode")
 	private String zipCode;
+	
+	@Column(name="customerCode")
+	private String customerCode;
+	
+
+	public String getCustomerCode() {
+		return customerCode;
+	}
+
+	public void setCustomerCode(String customerProjectCode) {
+		this.customerCode = customerProjectCode;
+	}
 
 	public int getCustomerId() {
 		return customerId;

@@ -73,7 +73,7 @@ public class ProjectController {
 	
 	
 	@Transactional(propagation=Propagation.REQUIRED)
-	@PostMapping("/create/{projectName}/{customerId}/{customerProgramId}/{departmentId}/{projectType}/{projectStatus}/{location}/{customerProjectCode}")
+	@PostMapping("/create/{projectName}/{customerId}/{customerProgramId}/{departmentId}/{projectType}/{projectStatus}/{location}/{customerProjectCode}/{projectCode}")
 	public ResponseEntity<Void> create(
 			@PathVariable("projectName") String projectName,
 			@PathVariable("customerId") String customerId,
@@ -82,7 +82,8 @@ public class ProjectController {
 			@PathVariable("projectType") String projectType,
 			@PathVariable("projectStatus") String projectStatus,
 			@PathVariable("location") String location,
-			@PathVariable("customerProjectCode") String customerProjectCode
+			@PathVariable("customerProjectCode") String customerProjectCode,
+			@PathVariable("projectCode") String projectCode
 			) throws HRException{
 		Project project = new Project();
 		project.setProjectName(projectName);
@@ -103,13 +104,14 @@ public class ProjectController {
 		project.setProjectStatus(projectStatus);
 		project.setLocation(location);
 		project.setCustomerProjectCode(customerProjectCode);
+		project.setProjectCode(projectCode);
 		log.info("Creating the project " + project.toString() + " with department " + departmentId + "for the customer Program " + customerProgramId + " for the customer " + customerId);
 		service.create(project);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
-	@PostMapping("/update/{projectid}/{projectName}/{customerId}/{customerProgramId}/{departmentId}/{projectType}/{projectStatus}/{location}/{customerProjectCode}")
+	@PostMapping("/update/{projectid}/{projectName}/{customerId}/{customerProgramId}/{departmentId}/{projectType}/{projectStatus}/{location}/{customerProjectCode}/{projectCode}")
 	public ResponseEntity<Void> update(
 			@PathVariable("projectid") String projectid,
 			@PathVariable("projectName") String projectName,
@@ -119,7 +121,8 @@ public class ProjectController {
 			@PathVariable("projectType") String projectType,
 			@PathVariable("projectStatus") String projectStatus,
 			@PathVariable("location") String location,
-			@PathVariable("customerProjectCode") String customerProjectCode
+			@PathVariable("customerProjectCode") String customerProjectCode,
+			@PathVariable("projectCode") String projectCode
 			) {
 		Project project = new Project();
 		project.setProjectid(Integer.parseInt(projectid));
@@ -141,6 +144,7 @@ public class ProjectController {
 		project.setProjectStatus(projectStatus);
 		project.setLocation(location);
 		project.setCustomerProjectCode(customerProjectCode);
+		project.setProjectCode(projectCode);
 		log.info("Updating the project " + project.toString() + " with department " + departmentId + "for the customer Program " + customerProgramId + " for the customer " + customerId);
 		service.update(project);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);

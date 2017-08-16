@@ -54,6 +54,17 @@ public class Department implements Serializable{
 	@Column(name = "updatedTime")
 	private Date updatedTime;
 	
+	@Column(name = "departmentCode")
+	private String departmentCode;
+	
+	public String getDepartmentCode() {
+		return departmentCode;
+	}
+
+	public void setDepartmentCode(String departmentCode) {
+		this.departmentCode = departmentCode;
+	}
+
 	public Department() {}
 	
 	public int getDepartmentId() {

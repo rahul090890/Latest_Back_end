@@ -194,7 +194,7 @@ public class TimesheetController {
 				timesheet.setWeekEndDate(dto.getEndDateOfWeek());
 				timesheet.setCreatedBy(employee.getEmployeeId() + "");
 				timesheet.setCreatedTimeStamp(currentTime);
-				timesheet.setTimesheetStatus(TimesheetStatus.DRAFT.name());
+				timesheet.setTimesheetStatus(TimesheetStatus.PENDING.name());
 				timesheet.setComments(comments);
 				log.info("Timesheet is added" + timesheet.toString());
 				timesheets.add(timesheet);

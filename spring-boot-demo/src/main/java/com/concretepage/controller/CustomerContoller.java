@@ -42,18 +42,20 @@ public class CustomerContoller {
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
-	@PostMapping("/create/{customerName}/{address}/{country}/{zipCode}")
+	@PostMapping("/create/{customerName}/{address}/{country}/{zipCode}/{customerCode}")
 	public ResponseEntity<Void> create(
 			@PathVariable("customerName") String customerName,
 			@PathVariable("address") String address,
 			@PathVariable("country") String country,
-			@PathVariable("zipCode") String zipCode
+			@PathVariable("zipCode") String zipCode,
+			@PathVariable("customerCode") String customerCode
 			) {
 		Customer customer = new Customer();
 		customer.setCustomerName(customerName);
 		customer.setAddress(address);
 		customer.setCountry(country);
 		customer.setZipCode(zipCode);
+		customer.setCustomerCode(customerCode);
 		log.info("Creating the customer " + customer.toString() );
 		service.create(customer);
 		
@@ -61,13 +63,14 @@ public class CustomerContoller {
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
-	@PostMapping("/update/{customerId}/{customerName}/{address}/{country}/{zipCode}")
+	@PostMapping("/update/{customerId}/{customerName}/{address}/{country}/{zipCode}/{customerCode}")
 	public ResponseEntity<Void> update(
 			@PathVariable("customerId") String customerId,
 			@PathVariable("customerName") String customerName,
 			@PathVariable("address") String address,
 			@PathVariable("country") String country,
-			@PathVariable("zipCode") String zipCode
+			@PathVariable("zipCode") String zipCode,
+			@PathVariable("customerCode") String customerCode
 			) {
 		Customer customer = new Customer();
 		customer.setCustomerId(Integer.parseInt(customerId));
@@ -75,6 +78,7 @@ public class CustomerContoller {
 		customer.setAddress(address);
 		customer.setCountry(country);
 		customer.setZipCode(zipCode);
+		customer.setCustomerCode(customerCode);
 		log.info("Updating the customer " + customer.toString() );
 		service.update(customer);
 		

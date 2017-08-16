@@ -2,7 +2,7 @@ package com.concretepage.entity;
 
 public enum TimesheetStatus {
 
-	DRAFT,
+	PENDING,
 	SUBMITTED,
 	APPROVED,
 	REJECTED

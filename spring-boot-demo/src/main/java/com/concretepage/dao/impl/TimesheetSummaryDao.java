@@ -40,7 +40,7 @@ public class TimesheetSummaryDao implements ITimesheetSummaryDao {
 		String hql = "from TimesheetSummary as s where s.id.employeeId IN :employeeList and  s.timesheetStatus = :timesheetStatus order by s.id.employeeId " ;
 		Query query = entityManager.createQuery(hql);
 		query.setParameter("employeeList", employeeIds);
-		query.setParameter("timesheetStatus", TimesheetStatus.DRAFT.name());
+		query.setParameter("timesheetStatus", TimesheetStatus.PENDING.name());
 		
 		return (List<TimesheetSummary>)query.getResultList();
 	}

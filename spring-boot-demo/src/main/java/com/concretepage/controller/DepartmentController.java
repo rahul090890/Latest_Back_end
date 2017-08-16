@@ -37,11 +37,12 @@ public class DepartmentController {
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
-	@PostMapping("/create/{departmentName}/{parentDepartmentId}/{managerId}")
+	@PostMapping("/create/{departmentName}/{parentDepartmentId}/{managerId}/{departmentCode}")
 	public ResponseEntity<Void> create(
 			@PathVariable("departmentName") String departmentName,
 			@PathVariable("parentDepartmentId") String parentDepartmentId,
-			@PathVariable("managerId") String managerId
+			@PathVariable("managerId") String managerId,
+			@PathVariable("departmentCode") String departmentCode
 			) {
 		Department department = new Department();
 		department.setDepartmentName(departmentName);
@@ -51,6 +52,7 @@ public class DepartmentController {
 		department.setParentDepartment(parentDepartement);
 		
 		department.setManager(Integer.parseInt(managerId));
+		department.setDepartmentCode(departmentCode);
 		
 		department.setCreatedTime(Calendar.getInstance().getTime());
 		log.info("Creating the department " + department.toString());
@@ -61,12 +63,13 @@ public class DepartmentController {
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
-	@PostMapping("/update/{departmentId}/{departmentName}/{parentDepartmentId}/{managerId}")
+	@PostMapping("/update/{departmentId}/{departmentName}/{parentDepartmentId}/{managerId}/{departmentCode}")
 	public ResponseEntity<Void> update(
 			@PathVariable("departmentId") String departmentId,
 			@PathVariable("departmentName") String departmentName,
 			@PathVariable("parentDepartmentId") String parentDepartmentId,
-			@PathVariable("managerId") String managerId
+			@PathVariable("managerId") String managerId,
+			@PathVariable("departmentCode") String departmentCode
 			) {
 		Department department = new Department();
 		department.setDepartmentId(Integer.parseInt(departmentId));
@@ -77,7 +80,7 @@ public class DepartmentController {
 		department.setParentDepartment(parentDepartement);
 		
 		department.setManager(Integer.parseInt(managerId));
-		
+		department.setDepartmentCode(departmentCode);
 		department.setCreatedTime(Calendar.getInstance().getTime());
 		log.info("updating the department" + department.toString());
 		service.update(department);
